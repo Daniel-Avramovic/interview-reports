@@ -1,12 +1,16 @@
+import { Fragment } from "react";
+import Footer from "./app/components/footer/Footer";
+import Header from "./app/components/header/Header";
+import Home from "./app/components/home/Home";
 
-import './App.css';
-
-function App() {
+const App = () => {
   return (
-    <div className="App">
-   <p>Heloo</p>
-    </div>
+    <Fragment>
+      <Header />
+      <Home />
+      <Footer />
+    </Fragment>
   );
-}
+};
 
 export default App;
