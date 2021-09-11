@@ -1,14 +1,28 @@
-import React from 'react';
+import React from "react";
 
-const Login = () => {
-    return(
-        <main>
-            <form>
-                <input type="text" placeholder="email" />
-                <input type="password" placeholder="password" />
-                <button>Back to</button>
-                <button>Submit</button>
-            </form>
-        </main>
-    )
-}
+const Login = ({ submit, email, password, onChangeEmail, onChangePassword }) => {
+//   
+
+  return (
+    <main>
+      <form>
+        <input
+          type="text"
+          placeholder="email"
+          value={email}
+          onChange={onChangeEmail}
+        />
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={onChangePassword}
+        />
+        <button>Back to</button>
+        <button onClick={submit}>Submit</button>
+        </form>
+    </main>
+  );
+};
+
+export default Login;
