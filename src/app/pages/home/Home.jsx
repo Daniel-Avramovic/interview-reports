@@ -3,18 +3,18 @@ import { getCandidates } from "../../../services/getCandidates";
 import "./home.css";
 
 const Home = () => {
-  const img = "https://clinicforspecialchildren.org/wp-content/uploads/2016/08/avatar-placeholder.gif";
-  const [candidates, setCandidates] = useState([]);
   const token = sessionStorage.getItem("token");
-  useEffect(() => {
-    console.log(token);
+  const img =
+    "https://clinicforspecialchildren.org/wp-content/uploads/2016/08/avatar-placeholder.gif";
+  const [candidates, setCandidates] = useState([]);
+  const onGetCandidates = () => {
     const get = async () => {
-      const onGetCandidates = await getCandidates();
+      const onGetCandidates = await getCandidates(token);
       setCandidates(onGetCandidates);
-      return getCandidates;
     };
     get();
-  }, [token]);
+  };
+  useEffect(onGetCandidates, [token]);
 
   return (
     <main className="container">

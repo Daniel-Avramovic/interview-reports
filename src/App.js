@@ -1,12 +1,11 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useState } from "react";
 import Footer from "./app/components/footer/Footer";
 import Header from "./app/components/header/Header";
 import Home from "./app/pages/home/Home";
 import Login from "./app/pages/login/Login";
 import { getToken } from "./services/login";
 import CandidateReport from "./app/pages/CandidateReport/CandidateReport.jsx";
-import{BrowserRouter, Route,Switch} from "react-router-dom";
-
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 
 const App = () => {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
@@ -19,18 +18,17 @@ const App = () => {
     setPassword(e.target.value);
   };
   const submit = (e) => {
-    const token = async ()=>{
-      const data = await getToken(email, password)
-      setToken(data.accessToken)
-    }
+    const token = async () => {
+      const data = await getToken(email, password);
+      sessionStorage.setItem("token", data.accessToken);
+      setToken(data.accessToken);
+    };
     token();
-    setEmail('');
-    setPassword('');
+    setEmail("");
+    setPassword("");
     e.preventDefault(); //probaj bez ovoga!!!
   };
-  useEffect(() => {
-    sessionStorage.setItem("token", token);
-  }, [token]);
+
   if (!token || token === "undefined") {
     return (
       <Fragment>
@@ -46,16 +44,15 @@ const App = () => {
   }
   return (
     <BrowserRouter>
-    <Fragment>   
-      <Header />
-      <Switch>
-        <Route exact path={"/"} component={Home} />
-        <Route path={"/candidateReport"} component={CandidateReport} />
-      
+      <Fragment>
+        <Header />
+        <Switch>
+          <Route exact path={"/"} component={Home} />
+          <Route path={"/candidateReport"} component={CandidateReport} />
         </Switch>
-     
-      <Footer />
-    </Fragment>
+
+        <Footer />
+      </Fragment>
     </BrowserRouter>
   );
 };
