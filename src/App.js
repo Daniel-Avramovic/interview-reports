@@ -4,6 +4,9 @@ import Header from "./app/components/header/Header";
 import Home from "./app/pages/home/Home";
 import Login from "./app/pages/login/Login";
 import { getToken } from "./services/login";
+import CandidateReport from "./app/pages/CandidateReport/CandidateReport.jsx";
+import{BrowserRouter, Route,Switch} from "react-router-dom";
+
 
 const App = () => {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
@@ -58,11 +61,18 @@ const App = () => {
     );
   }
   return (
+    <BrowserRouter>
     <Fragment>
       <Header />
-      <Home />
+      <Switch>
+        <Route exact path={"/"} component={Home} />
+        <Route path={"/candidateReport"} component={CandidateReport} />
+      
+        </Switch>
+     
       <Footer />
     </Fragment>
+    </BrowserRouter>
   );
 };
 
