@@ -23,22 +23,6 @@ const App = () => {
       const data = await getToken(email, password)
       setToken(data.accessToken)
     }
-    // const getToken = async (email, password) => {
-    //   const response = await fetch("http://localhost:3333/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       email: email,
-    //       password: password,
-    //     }),
-    //   });
-    //   //email: "dev@dev.com",
-    //   //password: "developer",
-    //   const data = await response.json();
-    //   setToken(data.accessToken);
-    // };
     token();
     setEmail('');
     setPassword('');
