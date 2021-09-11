@@ -6,7 +6,7 @@ const Header = () => {
       <div className="navbar-fixed">
         <nav>
           <div className="nav-wrapper">
-            <a href="#!" classname="brand-logo">
+            <a href="#!" className="brand-logo">
               JobBook
             </a>
             <ul className="right hide-on-med-and-down">
