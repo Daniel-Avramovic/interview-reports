@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { getCandidates } from "../../../services/getCandidates";
 import "./home.css";
 
@@ -18,9 +19,10 @@ const Home = () => {
 
   return (
     <main className="container">
-      {candidates.map((candidate) => {
+      {candidates.map((candidate, index) => {
         return (
-          <div className="row card2 cardsize">
+          <Link to={`/candidateReport/${candidate.id}`} key={index} >
+          <div className="row card2 cardsize" >
             <div className="col s10 m10">
               <div className="card">
                 <div className="card-image imageavatar ">
@@ -32,6 +34,7 @@ const Home = () => {
               </div>
             </div>
           </div>
+          </Link>
         );
       })}
     </main>

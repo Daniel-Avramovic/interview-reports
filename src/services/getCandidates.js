@@ -9,6 +9,5 @@ export const getCandidates = async (token) => {
         },
     });
     const getCandidates = await response.json();
-    console.log(getCandidates);
     return getCandidates;
 }
