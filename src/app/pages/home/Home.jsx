@@ -24,7 +24,7 @@ const Home = () => {
   };
   const filteredUsers = filterUser(candidates, value);
   console.log(filteredUsers)
-  if (filteredUsers.length==[]) {
+  if (filteredUsers.length===0) {
     console.log(filteredUsers)
     return (
       <main className="container">
@@ -39,8 +39,7 @@ const Home = () => {
       
       {filteredUsers.map((candidate, index) => {
         return (
-          <Link to={`/candidateReport/${candidate.id}`} key={index}>
-            <div className="row card2 cardsize">
+          <Link to={`/candidateReport/${candidate.id}`} key={index}  className="row card2 cardsize">
               <div className="col s10 m10">
                 <div className="card">
                   <div className="card-image imageavatar ">
@@ -51,7 +50,6 @@ const Home = () => {
                   <div className="card-content"></div>
                 </div>
               </div>
-            </div>
           </Link>
         );
       })}
