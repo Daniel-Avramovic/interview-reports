@@ -1,25 +1,32 @@
 import React from "react";
+import './login.css';
 
 const Login = ({ submit, email, password, onChangeEmail, onChangePassword }) => {
 //   
 
   return (
     <main>
-      <form>
+       <form>
+         <div className="input">
         <input
+          className = "input"
           type="text"
           placeholder="email"
           value={email}
           onChange={onChangeEmail}
         />
         <input
+          className = "input password"
           type="password"
           placeholder="password"
           value={password}
           onChange={onChangePassword}
         />
-        <button>Back to</button>
-        <button onClick={submit}>Submit</button>
+        </div>
+        <div className="buttons">
+        <button>Back to Home</button>
+        <button onClick={submit}>Log in</button>
+        </div>
         </form>
     </main>
   );
