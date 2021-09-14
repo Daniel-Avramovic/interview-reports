@@ -29,12 +29,12 @@ const CandidatesUI = ({ candidates, value, search }) => {
                 xs={12}
                 md={6}
                 xl={4}
-                className="d-flex justify-content-center mb-4"
+                className="d-flex justify-content-center mb-5"
                 key={index}
               >
-                <Link to={`/candidateReport/${candidate.id}`}>
+                <Link to={`/candidateReport/${candidate.id}`} className="imgH">
                   <Card
-                    style={{ width: "20rem" }}
+                    className="radiusShadow"
                     border="primary"
                     bg="secondary"
                     text="white"

@@ -18,7 +18,7 @@ const SingleCandidate = ({ candidate, reports }) => {
             </div>}
       <Container>
         <Row>
-          <Col xs={12} md={12} lg={4} className="imgH">
+          <Col xs={12} md={12} lg={4}>
             <Image src={img} alt="no img" fluid />
           </Col>
           <Col xs={12} md={12} lg={4}>
