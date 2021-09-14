@@ -2,20 +2,22 @@ import React, { useState } from "react";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { formatDate } from "../../../../Data/formatDate";
+import Modalset from "../../../components/modal/Modal.jsx";
+
 import "./singleCandidate.css";
 
 const SingleCandidate = ({ candidate, reports }) => {
   const [isView, setIsView] = useState(false);
   const [modalObj, setModalObj] = useState({});
-
+  const closedModal =()=>{
+    setIsView(false)
+  }
+  console.log(modalObj)
   const img =
     "https://w7.pngwing.com/pngs/340/956/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper.png";
   return (
     <main>
-        {isView && <div>
-            <h1>{modalObj.companyName}</h1>
-            <button onClick={() => {setModalObj({}); setIsView(false)}}>close</button>
-            </div>}
+        {isView && <Modalset modalObj={modalObj} closed={closedModal}/>}
       <Container>
         <Row>
           <Col xs={12} md={12} lg={4}>
