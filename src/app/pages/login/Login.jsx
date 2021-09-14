@@ -24,8 +24,8 @@ const Login = ({ submit, email, password, onChangeEmail, onChangePassword }) => 
         />
         </div>
         <div className="buttons">
-        <button>Back to Home</button>
-        <button onClick={submit}>Log in</button>
+        <button className="single-button">Back to Home</button>
+        <button className="single-button" onClick={submit}>Log in</button>
         </div>
         </form>
     </main>
