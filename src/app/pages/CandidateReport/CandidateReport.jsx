@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { getCandidates } from "../../../services/getCandidates";
 import { getReports } from "../../../services/getReports";
+import Loader from "../../components/loader/Loader";
 import "./candidateReport.css";
 import SingleCandidate from "./candidateReportsUI/SingleCandidate";
 
@@ -39,7 +40,7 @@ const CandidateReport = ({ match }) => {
   useEffect(onGetReports, [token, id]);
   return (
     <Fragment>
-      {loading ? <h1>Loading...</h1> : <SingleCandidate candidate={candidate} reports={reports} />}
+      {loading ? <Loader /> : <SingleCandidate candidate={candidate} reports={reports} />}
     </Fragment>
   );
 };

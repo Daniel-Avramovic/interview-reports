@@ -1,5 +1,6 @@
 import React, { useState, useEffect, Fragment } from "react";
 import { getCandidates } from "../../../services/getCandidates";
+import Loader from "../../components/loader/Loader";
 import CandidatesUI from "./candidatesUi/CandidatesUi";
 import "./home.css";
 
@@ -22,7 +23,7 @@ const Home = () => {
   };
   return (
     <Fragment>
-      {loading? <main>loading</main>: <CandidatesUI candidates={candidates} value={value} search={onChange} />}
+      {loading? <Loader />: <CandidatesUI candidates={candidates} value={value} search={onChange} />}
     </Fragment>
   );
 };
