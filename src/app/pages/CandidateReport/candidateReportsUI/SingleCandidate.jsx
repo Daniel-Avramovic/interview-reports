@@ -1,15 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { formatDate } from "../../../../Data/formatDate";
 import "./singleCandidate.css";
 
 const SingleCandidate = ({ candidate, reports }) => {
-  console.log(reports);
+  const [isView, setIsView] = useState(false);
+  const [modalObj, setModalObj] = useState({});
+
   const img =
     "https://w7.pngwing.com/pngs/340/956/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper.png";
   return (
     <main>
+        {isView && <div>
+            <h1>{modalObj.companyName}</h1>
+            <button onClick={() => {setModalObj({}); setIsView(false)}}>close</button>
+            </div>}
       <Container>
         <Row>
           <Col xs={12} md={12} lg={4} className="imgH">
@@ -42,7 +48,7 @@ const SingleCandidate = ({ candidate, reports }) => {
                         <th>{index+1}</th>
                         <th>{report.companyName}</th>
                         <th>{formatDate(report.interviewDate)}</th>
-                        <th>{report.status} <button>Show modal</button></th>
+                        <th>{report.status} <button onClick={()=> {setModalObj(report); setIsView(true)}}>Show modal</button></th>
                     </tr>
                 )
             })}
