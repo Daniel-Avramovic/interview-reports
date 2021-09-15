@@ -1,18 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container, Row, Col, Table } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { formatDate } from "../../../../Data/formatDate";
+import Modalset from "../../../components/modal/Modal.jsx";
+
 import "./singleCandidate.css";
 
 const SingleCandidate = ({ candidate, reports }) => {
-  console.log(reports);
+  const [isView, setIsView] = useState(false);
+  const [modalObj, setModalObj] = useState({});
+  const closedModal =()=>{
+    setIsView(false)
+  }
+  console.log(modalObj)
   const img =
     "https://w7.pngwing.com/pngs/340/956/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper.png";
   return (
     <main>
+        {isView && <Modalset modalObj={modalObj} closed={closedModal}/>}
       <Container>
         <Row>
-          <Col xs={12} md={12} lg={4} className="imgH">
+          <Col xs={12} md={12} lg={4}>
             <Image src={img} alt="no img" fluid />
           </Col>
           <Col xs={12} md={12} lg={4}>
@@ -42,7 +50,7 @@ const SingleCandidate = ({ candidate, reports }) => {
                         <th>{index+1}</th>
                         <th>{report.companyName}</th>
                         <th>{formatDate(report.interviewDate)}</th>
-                        <th>{report.status} <button>Show modal</button></th>
+                        <th>{report.status} <button onClick={()=> {setModalObj(report); setIsView(true)}}>Show modal</button></th>
                     </tr>
                 )
             })}

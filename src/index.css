@@ -23,3 +23,11 @@ main {
 a{
   text-decoration: none !important;
 }
+.imgH{
+  transition: all 1s ease;
+}
+.imgH:hover{
+  cursor: pointer;
+  transform: scale(1.03);
+  transition: all 1s ease;
+} 
