@@ -11,6 +11,7 @@ const App = () => {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLogIn, setisLogIn] = useState(false);
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
@@ -20,16 +21,21 @@ const App = () => {
   const submit = (e) => {
     const token = async () => {
       const data = await getToken(email, password);
+      sessionStorage.setItem("login", true);
       sessionStorage.setItem("token", data.accessToken);
       setToken(data.accessToken);
+      setisLogIn(true);
     };
     token();
     setEmail("");
     setPassword("");
     e.preventDefault(); //probaj bez ovoga!!!
   };
+  const logOut = () => {
+    setisLogIn(false);
+  };
 
-  if (!token || token === "undefined") {
+  if (!token || token === "undefined" || !isLogIn) {
     return (
       <Fragment>
         <Login
@@ -45,7 +51,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Fragment>
-        <Header />
+        <Header logOut={logOut} />
         <Switch>
           <Route exact path={"/"} component={Home} />
           <Route path={"/candidateReport/:id"} component={CandidateReport} />
