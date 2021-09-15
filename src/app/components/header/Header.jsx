@@ -3,7 +3,7 @@ import { Container, Navbar, Nav } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import "./header.css";
 
-const Header = () => {
+const Header = ({ logOut }) => {
   return (
     <header>
       <Navbar className="navStyle" expand="lg">
@@ -18,7 +18,7 @@ const Header = () => {
               <Link to="/" className="float">
                 Home
               </Link>
-              <button>Logout</button>
+              <button onClick={logOut}>Logout</button>
               {/* <Nav.Link href="/">Home</Nav.Link>
         <Nav.Link href="#link">Link</Nav.Link> */}
             </Nav>
