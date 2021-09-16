@@ -8,6 +8,7 @@ import CandidateReport from "./app/pages/CandidateReport/CandidateReport.jsx";
 import { Route, Switch, useHistory } from "react-router-dom";
 
 const App = () => {
+  let history = useHistory();
   const [token, setToken] = useState(sessionStorage.getItem("token"));
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,6 +23,7 @@ const App = () => {
       const data = await getToken(email, password);
       sessionStorage.setItem("token", data.accessToken);
       setToken(data.accessToken);
+      history.push("/");
 
     };
     token();
@@ -29,7 +31,7 @@ const App = () => {
     setPassword("");
     e.preventDefault(); //probaj bez ovoga!!!
   };
-  let history = useHistory();
+  
   const logOut = () => {
     sessionStorage.removeItem("token");
     history.push('/login')
