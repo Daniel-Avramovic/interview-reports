@@ -5,7 +5,7 @@ import Home from "./app/pages/home/Home";
 import Login from "./app/pages/login/Login";
 import { getToken } from "./services/login";
 import CandidateReport from "./app/pages/CandidateReport/CandidateReport.jsx";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 
 const App = () => {
   const [token, setToken] = useState(sessionStorage.getItem("token"));
@@ -22,43 +22,42 @@ const App = () => {
       const data = await getToken(email, password);
       sessionStorage.setItem("token", data.accessToken);
       setToken(data.accessToken);
-     
+
     };
     token();
     setEmail("");
     setPassword("");
     e.preventDefault(); //probaj bez ovoga!!!
   };
+  let history = useHistory();
   const logOut = () => {
     sessionStorage.removeItem("token");
-    window.location.reload();
+    history.push('/login')
   };
 
   if (!token || token === "undefined") {
-    return (
-      <Fragment>
-        <Login
-          submit={submit}
-          email={email}
-          password={password}
-          onChangeEmail={onChangeEmail}
-          onChangePassword={onChangePassword}
-        />
-      </Fragment>
-    );
+    history.push('/login');
   }
+
   return (
-    <BrowserRouter>
       <Fragment>
         <Header logOut={logOut} />
         <Switch>
           <Route exact path={"/"} component={Home} />
           <Route path={"/candidateReport/:id"} component={CandidateReport} />
+          <Route exact path="/login">
+            <Login
+              submit={submit}
+              email={email}
+              password={password}
+              onChangeEmail={onChangeEmail}
+              onChangePassword={onChangePassword}
+            />
+          </Route>
         </Switch>
 
         <Footer />
       </Fragment>
-    </BrowserRouter>
   );
 };
 
