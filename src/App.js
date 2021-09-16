@@ -22,11 +22,16 @@ const App = () => {
       const data = await getToken(email, password);
       sessionStorage.setItem("token", data.accessToken);
       setToken(data.accessToken);
+     
     };
     token();
     setEmail("");
     setPassword("");
     e.preventDefault(); //probaj bez ovoga!!!
+  };
+  const logOut = () => {
+    sessionStorage.removeItem("token");
+    window.location.reload();
   };
 
   if (!token || token === "undefined") {
@@ -45,7 +50,7 @@ const App = () => {
   return (
     <BrowserRouter>
       <Fragment>
-        <Header />
+        <Header logOut={logOut} />
         <Switch>
           <Route exact path={"/"} component={Home} />
           <Route path={"/candidateReport/:id"} component={CandidateReport} />

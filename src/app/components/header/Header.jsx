@@ -1,22 +1,30 @@
 import React from "react";
+import { Container, Navbar, Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import "./header.css";
 
-const Header = () => {
+const Header = ({ logOut }) => {
   return (
     <header>
-      <div className="navbar-fixed">
-        <nav>
-          <div className="nav-wrapper">
-            <a href="#!" className="brand-logo">
-              JobBook
-            </a>
-            <ul className="right hide-on-med-and-down">
-              <li>
-                <a href="sass.html">Login</a>
-              </li>
-            </ul>
-          </div>
-        </nav>
-      </div>
+      <Navbar className="navStyle" expand="lg">
+        <Container>
+          <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse
+            id="basic-navbar-nav"
+            className="d-flex justify-content-end"
+          >
+            <Nav className="d-flex align-items-center">
+              <Link to="/" className="float">
+                Home
+              </Link>
+              <button onClick={logOut}>Logout</button>
+              {/* <Nav.Link href="/">Home</Nav.Link>
+        <Nav.Link href="#link">Link</Nav.Link> */}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </header>
   );
 };
