@@ -18,6 +18,12 @@ const Header = ({ logOut }) => {
               <Link to="/" className="float">
                 Home
               </Link>
+              <Link to="/reports" className="float">
+                Reports
+              </Link>
+              <Link to="/createReport" className="float">
+                Create Report
+              </Link>
               <button onClick={logOut}>Logout</button>
               {/* <Nav.Link href="/">Home</Nav.Link>
         <Nav.Link href="#link">Link</Nav.Link> */}
