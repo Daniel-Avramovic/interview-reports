@@ -1,7 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
 import { getReports } from "../../../services/getReports";
 import Loader from "../../components/loader/Loader";
-import ReportsUI from "../createReport/reportsUI/ReportsUI";
+import ReportsUI from "./reportsUI/ReportsUI";
 
 const Reports = () => {
   const token = sessionStorage.getItem("token");
@@ -9,8 +9,9 @@ const Reports = () => {
   const [loading, setLoading] = useState(true);
   const onGetReports = () => {
     const get = async () => {
-      const reports = await getReports(token);
-      setReports(reports);
+      const allReports = await getReports(token);
+    //   console.log(allReports);
+      setReports(allReports);
       setLoading(false);
     };
     get();
