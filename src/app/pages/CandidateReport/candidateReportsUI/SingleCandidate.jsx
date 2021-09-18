@@ -3,7 +3,8 @@ import { Container, Row, Col, Table } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { formatDate } from "../../../../Data/formatDate";
 import Modalset from "../../../components/modal/Modal.jsx";
-
+import { faEye } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./singleCandidate.css";
 
 const SingleCandidate = ({ candidate, reports }) => {
@@ -12,7 +13,6 @@ const SingleCandidate = ({ candidate, reports }) => {
   const closedModal =()=>{
     setIsView(false)
   }
-  console.log(modalObj)
   const img =
     "https://w7.pngwing.com/pngs/340/956/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper.png";
   return (
@@ -50,7 +50,7 @@ const SingleCandidate = ({ candidate, reports }) => {
                         <th>{index+1}</th>
                         <th>{report.companyName}</th>
                         <th>{formatDate(report.interviewDate)}</th>
-                        <th>{report.status} <button onClick={()=> {setModalObj(report); setIsView(true)}}>Show modal</button></th>
+                        <th>{report.status} <button className="styleButton" onClick={()=> {setModalObj(report); setIsView(true)}}><FontAwesomeIcon icon={faEye}/></button></th>
                     </tr>
                 )
             })}

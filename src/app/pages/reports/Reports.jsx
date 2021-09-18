@@ -7,16 +7,15 @@ const Reports = () => {
   const token = sessionStorage.getItem("token");
   const [reports, setReports] = useState([]);
   const [loading, setLoading] = useState(true);
-  const onGetReports = () => {
-    const get = async () => {
-      const allReports = await getReports(token);
-    //   console.log(allReports);
-      setReports(allReports);
+ 
+  async function getData() {
+    let data = await getReports(token);
+    if(data) {
+      setReports(data);
       setLoading(false);
-    };
-    get();
-  };
-  useEffect(onGetReports, [token]);
+    }
+  }
+  useEffect(()=>{getData()});
   return(
       <Fragment>
           {loading ? <Loader /> : <ReportsUI reports={reports} />}
