@@ -5,3 +5,8 @@ color: white;
 /* .imgH{
     height: 100px !important;
 } */
+.styleButton{
+    float: right;
+    background-color: transparent;
+    border: none;
+}
