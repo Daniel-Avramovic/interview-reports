@@ -6,6 +6,7 @@ import ReportsUI from "./reportsUI/ReportsUI";
 const Reports = () => {
   const token = sessionStorage.getItem("token");
   const [reports, setReports] = useState([]);
+  const [value, setValue] = useState('');
   const [loading, setLoading] = useState(true);
  
   async function getData() {
@@ -16,9 +17,12 @@ const Reports = () => {
     }
   }
   useEffect(()=>{getData()});
+  const search = (e) =>{
+    setValue(e.target.value);
+  }
   return(
       <Fragment>
-          {loading ? <Loader /> : <ReportsUI reports={reports} />}
+          {loading ? <Loader /> : <ReportsUI reports={reports} value={value} search={search} />}
       </Fragment>
   );
 };

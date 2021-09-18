@@ -7,19 +7,21 @@ import "./reportsUI.css";
 import { faEye,  faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteReport } from "../../../../services/deleteReport";
-const ReportsUI = ({ reports }) => {
+import { filterReport } from "../../../../Data/filterReports";
+const ReportsUI = ({ reports, value, search }) => {
+  const filteredReports = filterReport(reports, value);
+  console.log(filteredReports)
   const token = sessionStorage.getItem('token');
   const [modal,setModal] = useState(null);
   const close = () => {
       setModal(null);
   };
-  
   return (
     <main>
         
       <Container>
           {modal && <Modalset closed={close} modalObj={modal} />}
-        <SearchBar />
+        <SearchBar value={value} search={search} />
         <Table className="mt-5">
           <thead>
             <tr>
@@ -28,7 +30,7 @@ const ReportsUI = ({ reports }) => {
               <th>Interview date</th>
               <th>Status</th>
             </tr>
-            {reports.map((report, index) => {
+            {filteredReports.map((report, index) => {
               return (
                 <tr key={index}>
                   <th>{report.companyName}</th>
