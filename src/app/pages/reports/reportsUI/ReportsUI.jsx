@@ -6,11 +6,14 @@ import SearchBar from "../../../components/searchBar/SearchBar";
 import "./reportsUI.css";
 import { faEye,  faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { deleteReport } from "../../../../services/deleteReport";
 const ReportsUI = ({ reports }) => {
+  const token = sessionStorage.getItem('token');
   const [modal,setModal] = useState(null);
   const close = () => {
       setModal(null);
-  }
+  };
+  
   return (
     <main>
         
@@ -33,7 +36,7 @@ const ReportsUI = ({ reports }) => {
                   <th>{formatDate(report.interviewDate)}</th>
                   <th>
                     {report.status} <div className="fRight">
-                    <button className="styleReportButton" onClick={()=>{setModal(report);}} ><FontAwesomeIcon icon={faEye} /></button><button className="styleReportButton"><FontAwesomeIcon icon={faTrashAlt} /></button>
+                    <button className="styleReportButton" onClick={()=>{setModal(report);}} ><FontAwesomeIcon icon={faEye} /></button><button className="styleReportButton" onClick={()=>{deleteReport(token, report.id)}}><FontAwesomeIcon icon={faTrashAlt} /></button>
                     </div>
                   </th>
                 </tr>
