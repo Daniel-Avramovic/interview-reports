@@ -12,9 +12,9 @@ const Header = ({ logOut }) => {
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse
             id="basic-navbar-nav"
-            className="d-flex justify-content-end"
+            // className="d-flex justify-content-end"
           >
-            <Nav className="d-flex align-items-center">
+            <Nav  className="ms-auto">
               <Link to="/" className="float">
                 Home
               </Link>
