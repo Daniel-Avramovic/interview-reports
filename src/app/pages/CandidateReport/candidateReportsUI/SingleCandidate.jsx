@@ -12,7 +12,7 @@ const SingleCandidate = ({ candidate, reports }) => {
   const [modalObj, setModalObj] = useState({});
   const closedModal =()=>{
     setIsView(false)
-  }
+  };
   const img =
     "https://w7.pngwing.com/pngs/340/956/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper.png";
   return (
