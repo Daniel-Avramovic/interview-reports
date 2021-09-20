@@ -6,11 +6,10 @@ import SearchBar from "../../../components/searchBar/SearchBar";
 import "./reportsUI.css";
 import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { deleteReport } from "../../../../services/deleteReport";
+// import { deleteReport } from "../../../../services/deleteReport";
 import { filterReport } from "../../../../Data/filterReports";
-const ReportsUI = ({ reports, value, search }) => {
+const ReportsUI = ({ reports, value, search, deleteOnClick }) => {
   const filteredReports = filterReport(reports, value);
-  const token = sessionStorage.getItem("token");
   const [modal, setModal] = useState(null);
   const close = () => {
     setModal(null);
@@ -29,6 +28,7 @@ const ReportsUI = ({ reports, value, search }) => {
               <th>Status</th>
             </tr>
             {filteredReports.map((report, index) => {
+              console.log(report)
               return (
                 <tr key={index}>
                   <th>{report.companyName}</th>
@@ -47,9 +47,7 @@ const ReportsUI = ({ reports, value, search }) => {
                       </button>
                       <button
                         className="styleReportButton"
-                        onClick={() => {
-                          deleteReport(token, report.id);
-                        }}
+                        onClick={() => {deleteOnClick(report.id)}}
                       >
                         <FontAwesomeIcon icon={faTrashAlt} />
                       </button>

@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState, useCallback } from "react";
+import { deleteReport } from "../../../services/deleteReport";
 import { getReports } from "../../../services/getReports";
 import Loader from "../../components/loader/Loader";
 import ReportsUI from "./reportsUI/ReportsUI";
@@ -16,13 +17,22 @@ const Reports = () => {
       setLoading(false);
     }
   },[token]);
+
+  const deleteOnClick = (id) => {
+    setLoading(true);
+    const data = deleteReport(token, id);
+    data.then(res => {
+      setReports(res);
+      setLoading(false);
+    })
+  }
   useEffect(()=>{getData()},[getData]);
   const search = (e) =>{
     setValue(e.target.value);
   }
   return(
       <Fragment>
-          {loading ? <Loader /> : <ReportsUI reports={reports} value={value} search={search} />}
+          {loading ? <Loader /> : <ReportsUI reports={reports} value={value} search={search} deleteOnClick={deleteOnClick} />}
       </Fragment>
   );
 };
