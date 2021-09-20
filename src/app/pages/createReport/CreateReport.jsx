@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Fragment } from "react";
+import { getRandomInt } from "../../../Data/randomId";
+import { Report } from "../../../entities/report";
 import { getCandidates } from "../../../services/getCandidates";
 import { getCompany } from "../../../services/getCompany";
 import Loader from "../../components/loader/Loader";
@@ -16,7 +18,7 @@ const CreateReport = () => {
   const [data, setData] = useState({ value: "" });
   // const [value, setValue] = useState("");
   console.log(data, "podaci");
-
+  const id = getRandomInt();
   const handleOnChange = (name, value) => {
     setData((prevState) => ({ ...prevState, [name]: value }));
   };
@@ -40,7 +42,25 @@ const CreateReport = () => {
     };
     get();
   };
+ const postDate = () => {
+  const postData = new Report(id, data.candidate.id, data.candidate.name, data.company.id, data.company.name, new Date(data.date), data.phase, data.status, data.notes);
+  fetch("http://localhost:3333/660/api/reports",{
+    method:"POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify(postData),
+  }
+  ).then(res => {
+    console.log(res);
+    res.json()
+  } ).then(data => {
+    console.log(data);
 
+  }).catch(err => console.log(err));
+ }
   const onGetCompany = () => {
     const get = async () => {
       const onGetCompany = await getCompany(token);
@@ -82,7 +102,7 @@ const CreateReport = () => {
         (loading ? (
           <Loader />
         ) : (
-          <Step3 handleOnChange={handleOnChange} value={data.date} backStep={backStep} />
+          <Step3 handleOnChange={handleOnChange} value={data.date} backStep={backStep} postDate={postDate} />
         ))}
     </Fragment>
   );
