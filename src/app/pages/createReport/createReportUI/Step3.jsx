@@ -1,8 +1,10 @@
 import React from "react";
 import { Col, Container, Row, Button } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import "./steps.css";
 
-const Step3 = ({ handleOnChange, backStep }) => {
+const Step3 = ({ handleOnChange, backStep, postDate }) => {
+  const history = useHistory();
   return (
     <main>
       <Container className="mt-3">
@@ -78,7 +80,7 @@ const Step3 = ({ handleOnChange, backStep }) => {
             <Button
               variant="outline-info"
               className="buttonNext"
-              // onClick={nextStep}
+              onClick={() => {postDate(); history.push('/')}}
             >
               Finish
             </Button>

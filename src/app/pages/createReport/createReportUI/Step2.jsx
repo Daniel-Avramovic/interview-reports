@@ -3,7 +3,6 @@ import { Container, Row, Col, Button } from "react-bootstrap";
 import './steps.css';
 
 const Step2 = ({ handleOnChange, nextStep, backStep, companies }) => {
-  console.log(companies);
   return (
     // <h1> <input onChange={ (e) => handleOnChange('company', e.target.value)} value={value} /></h1>
     <main>
