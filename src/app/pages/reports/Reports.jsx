@@ -16,7 +16,7 @@ const Reports = () => {
       setLoading(false);
     }
   }
-  useEffect(()=>{getData()});
+  useEffect(()=>{getData()},[]);
   const search = (e) =>{
     setValue(e.target.value);
   }
