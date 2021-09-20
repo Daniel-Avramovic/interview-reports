@@ -1,5 +1,7 @@
+import { getReports } from "./getReports";
+
 export const deleteReport = async (token, id) => {
-  const response = await fetch(`http://localhost:3333/660/api/reports/${id}`, {
+  await fetch(`http://localhost:3333/660/api/reports/${id}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
@@ -7,7 +9,7 @@ export const deleteReport = async (token, id) => {
       Authorization: `Bearer ${token}`,
     },
   });
-  const reports = await response.json();
-  console.log(reports.legnth)
-  return reports;
+  let data = await getReports(token);
+  
+  return data;
 };
