@@ -6,7 +6,6 @@ import SearchBar from "../../../components/searchBar/SearchBar";
 import "./steps.css";
 
 const Step1 = ({ handleOnChange, value, candidates, nextStep, selected }) => {
-  console.log(candidates);
   let history = useHistory();
   const filteredCandidates = filterUser(candidates, value);
   const img =

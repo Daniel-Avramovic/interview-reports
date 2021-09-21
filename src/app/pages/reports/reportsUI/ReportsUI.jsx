@@ -28,7 +28,6 @@ const ReportsUI = ({ reports, value, search, deleteOnClick,viewAlert }) => {
               <th>Status</th>
             </tr>
             {filteredReports.map((report, index) => {
-              console.log(report)
               return (
                 <tr key={index}>
                   <th>{report.companyName}</th>

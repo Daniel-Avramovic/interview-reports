@@ -36,7 +36,7 @@ const Login = ({
             Log in
           </button>
         </div>
-        {seeError && <div>{error}</div>}
+        {seeError && <div className="errMsg">{error}</div>}
       </form>
     </main>
   );

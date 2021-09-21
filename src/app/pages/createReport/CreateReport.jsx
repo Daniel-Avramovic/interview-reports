@@ -71,7 +71,6 @@ const CreateReport = () => {
       body: JSON.stringify(postData),
     })
       .then((res) => {
-        console.log(res);
         if(res.ok){
           setviewAlert(true);
          setTimeout(()=>{ history.push('/');}, 2000)
