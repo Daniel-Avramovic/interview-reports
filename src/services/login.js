@@ -9,8 +9,8 @@ export const getToken = async (email, password) => {
         password: password, // "developer",
       }),
     });
-    //email: "dev@dev.com",
-    //password: "developer",
+   console.log(response)
     const data = await response.json();
+    console.log(data);
     return data;
   };
