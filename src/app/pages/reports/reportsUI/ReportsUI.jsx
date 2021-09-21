@@ -6,11 +6,9 @@ import SearchBar from "../../../components/searchBar/SearchBar";
 import "./reportsUI.css";
 import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { deleteReport } from "../../../../services/deleteReport";
 import { filterReport } from "../../../../Data/filterReports";
-const ReportsUI = ({ reports, value, search }) => {
+const ReportsUI = ({ reports, value, search, deleteOnClick,viewAlert }) => {
   const filteredReports = filterReport(reports, value);
-  const token = sessionStorage.getItem("token");
   const [modal, setModal] = useState(null);
   const close = () => {
     setModal(null);
@@ -18,6 +16,7 @@ const ReportsUI = ({ reports, value, search }) => {
   return (
     <main>
       <Container>
+        {viewAlert && <div className="alert">Deleted Successfully!!!</div>}
         {modal && <Modalset closed={close} modalObj={modal} />}
         <SearchBar value={value} search={search} />
         <Table className="mt-5">
@@ -47,9 +46,7 @@ const ReportsUI = ({ reports, value, search }) => {
                       </button>
                       <button
                         className="styleReportButton"
-                        onClick={() => {
-                          deleteReport(token, report.id);
-                        }}
+                        onClick={() => {deleteOnClick(report.id)}}
                       >
                         <FontAwesomeIcon icon={faTrashAlt} />
                       </button>
