@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Fragment } from "react";
+import { useHistory } from "react-router-dom";
+import { errorHandle } from "../../../Data/errorHandle";
 import { getRandomInt } from "../../../Data/randomId";
 import { Report } from "../../../entities/report";
 import { getCandidates } from "../../../services/getCandidates";
@@ -10,14 +12,16 @@ import Step2 from "./createReportUI/Step2";
 import Step3 from "./createReportUI/Step3";
 
 const CreateReport = () => {
+  let history = useHistory();
   const token = sessionStorage.getItem("token");
   const [candidates, setCandidates] = useState([]);
   const [company, setCompany] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState({ value: "", valueCompany:"" });
-  // const [value, setValue] = useState("");
-  console.log(data, "podaci");
+  const [data, setData] = useState({ value: "", valueCompany: "" });
+  const [error, setError] = useState('');
+  const [viewAlert, setviewAlert] = useState(false)
+  // console.log(data, "podaci");
   const id = getRandomInt();
   const handleOnChange = (name, value) => {
     setData((prevState) => ({ ...prevState, [name]: value }));
@@ -42,25 +46,48 @@ const CreateReport = () => {
     };
     get();
   };
- const postDate = () => {
-  const postData = new Report(id, data.candidate.id, data.candidate.name, data.company.id, data.company.name, new Date(data.date), data.phase, data.status, data.notes);
-  fetch("http://localhost:3333/660/api/reports",{
-    method:"POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify(postData),
-  }
-  ).then(res => {
-    console.log(res);
-    res.json()
-  } ).then(data => {
-    console.log(data);
-
-  }).catch(err => console.log(err));
- }
+  const postDate = () => {
+    
+    const postData = new Report(
+      id,
+      data.candidate.id,
+      data.candidate.name,
+      data.company.id,
+      data.company.name,
+      new Date(data.date),
+      data.phase,
+      data.status,
+      data.notes
+    );
+    try{
+      errorHandle(data);
+    fetch("http://localhost:3333/660/api/reports", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(postData),
+    })
+      .then((res) => {
+        console.log(res);
+        if(res.ok){
+          setviewAlert(true);
+         setTimeout(()=>{ history.push('/');}, 2000)
+        }
+        res.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((err) => console.log(err));
+    }
+    catch(e){
+      console.log(e);
+      setError(e.message);
+    }
+  };
   const onGetCompany = () => {
     const get = async () => {
       const onGetCompany = await getCompany(token);
@@ -104,7 +131,14 @@ const CreateReport = () => {
         (loading ? (
           <Loader />
         ) : (
-          <Step3 handleOnChange={handleOnChange} value={data.date} backStep={backStep} postDate={postDate} />
+          <Step3
+            handleOnChange={handleOnChange}
+            value={data.date}
+            backStep={backStep}
+            postDate={postDate}
+            error={error}
+            viewAlert={viewAlert}
+          />
         ))}
     </Fragment>
   );
