@@ -15,7 +15,7 @@ const CreateReport = () => {
   const [company, setCompany] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
-  const [data, setData] = useState({ value: "" });
+  const [data, setData] = useState({ value: "", valueCompany:"" });
   // const [value, setValue] = useState("");
   console.log(data, "podaci");
   const id = getRandomInt();
@@ -84,6 +84,7 @@ const CreateReport = () => {
             value={data.value}
             candidates={candidates}
             nextStep={nextStep}
+            selected={data.candidate}
           />
         ))}
       {page === 2 &&
@@ -92,10 +93,11 @@ const CreateReport = () => {
         ) : (
           <Step2
             handleOnChange={handleOnChange}
-            value={data.company}
+            value={data.valueCompany}
             companies={company}
             nextStep={nextStep}
             backStep={backStep}
+            selected={data.company}
           />
         ))}
       {page === 3 &&

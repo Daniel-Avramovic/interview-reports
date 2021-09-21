@@ -5,7 +5,8 @@ import { filterUser } from "../../../../Data/flteredUsers";
 import SearchBar from "../../../components/searchBar/SearchBar";
 import "./steps.css";
 
-const Step1 = ({ handleOnChange, value, candidates, nextStep }) => {
+const Step1 = ({ handleOnChange, value, candidates, nextStep, selected }) => {
+  console.log(candidates);
   let history = useHistory();
   const filteredCandidates = filterUser(candidates, value);
   const img =
@@ -51,13 +52,18 @@ const Step1 = ({ handleOnChange, value, candidates, nextStep }) => {
             </Row>
           </Col>
           <div className="divButton">
-            <Button variant="outline-danger" className="buttonNext" onClick={()=> history.push('/')} >
+            <Button
+              variant="outline-danger"
+              className="buttonNext"
+              onClick={() => history.push("/")}
+            >
               Cancel
             </Button>
             <Button
               variant="outline-info"
               className="buttonNext"
               onClick={nextStep}
+              disabled={!selected}
             >
               Next
             </Button>

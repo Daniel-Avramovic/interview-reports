@@ -1,8 +1,11 @@
 import React from "react";
 import { Container, Row, Col, Button } from "react-bootstrap";
-import './steps.css';
+import { filterCompany } from "../../../../Data/filterCompany";
+import SearchBar from "../../../components/searchBar/SearchBar";
+import "./steps.css";
 
-const Step2 = ({ handleOnChange, nextStep, backStep, companies }) => {
+const Step2 = ({ handleOnChange, nextStep, backStep, companies, value, selected }) => {
+  const filteredCompany = filterCompany(companies, value);
   return (
     // <h1> <input onChange={ (e) => handleOnChange('company', e.target.value)} value={value} /></h1>
     <main>
@@ -20,7 +23,11 @@ const Step2 = ({ handleOnChange, nextStep, backStep, companies }) => {
             </div>
           </Col>
           <Col lg={9}>
-            {companies.map((company, index) => {
+            <SearchBar
+              value={value}
+              search={(e) => handleOnChange("valueCompany", e.target.value)}
+            />
+            {filteredCompany.map((company, index) => {
               return (
                 <div
                   key={index}
@@ -33,13 +40,18 @@ const Step2 = ({ handleOnChange, nextStep, backStep, companies }) => {
             })}
           </Col>
           <div className="divButton">
-            <Button variant="outline-danger" className="buttonNext" onClick={backStep}>
+            <Button
+              variant="outline-danger"
+              className="buttonNext"
+              onClick={backStep}
+            >
               Back
             </Button>
             <Button
               variant="outline-info"
               className="buttonNext"
               onClick={nextStep}
+              disabled={!selected}
             >
               Next
             </Button>
