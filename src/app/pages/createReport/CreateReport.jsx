@@ -20,7 +20,7 @@ const CreateReport = () => {
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState({ value: "", valueCompany: "" });
   const [error, setError] = useState('');
-  const [viewAlert, setviewAlert] = useState(false)
+  const [viewAlert, setviewAlert] = useState(false);
   // console.log(data, "podaci");
   const id = getRandomInt();
   const handleOnChange = (name, value) => {

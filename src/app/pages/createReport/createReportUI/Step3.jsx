@@ -72,7 +72,7 @@ const Step3 = ({ handleOnChange, backStep, postDate, error, viewAlert }) => {
               </Col>
             </Row>
           </Col>
-          {<p>{error}</p>}
+          {<p className="errMsg">{error}</p>}
           <div className="divButton">
             <Button
               variant="outline-danger"

@@ -6,9 +6,8 @@ import SearchBar from "../../../components/searchBar/SearchBar";
 import "./reportsUI.css";
 import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { deleteReport } from "../../../../services/deleteReport";
 import { filterReport } from "../../../../Data/filterReports";
-const ReportsUI = ({ reports, value, search, deleteOnClick }) => {
+const ReportsUI = ({ reports, value, search, deleteOnClick,viewAlert }) => {
   const filteredReports = filterReport(reports, value);
   const [modal, setModal] = useState(null);
   const close = () => {
@@ -17,6 +16,7 @@ const ReportsUI = ({ reports, value, search, deleteOnClick }) => {
   return (
     <main>
       <Container>
+        {viewAlert && <div className="alert">Deleted Successfully!!!</div>}
         {modal && <Modalset closed={close} modalObj={modal} />}
         <SearchBar value={value} search={search} />
         <Table className="mt-5">
