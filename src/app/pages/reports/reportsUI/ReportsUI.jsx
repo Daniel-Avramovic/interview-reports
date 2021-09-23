@@ -3,30 +3,36 @@ import { Container, Table } from "react-bootstrap";
 import { formatDate } from "../../../../Data/formatDate";
 import Modalset from "../../../components/modal/Modal";
 import SearchBar from "../../../components/searchBar/SearchBar";
-import "./reportsUI.css";
-import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { filterReport } from "../../../../Data/filterReports";
 import ModalConfirm from "../../../components/modalConfirm/ModalConfirm";
-const ReportsUI = ({ reports, value, search, deleteOnClick,viewAlert }) => {
+import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "./reportsUI.css";
+
+
+const ReportsUI = ({ reports, value, search, deleteOnClick, viewAlert }) => {
   const filteredReports = filterReport(reports, value);
-  const [modal,setModal] = useState(null);
-   const [id, setId] = useState("");
-   const [viewConfirmDelete, setViewConfirmDelete] = useState(false);
+  const [modal, setModal] = useState(null);
+  const [id, setId] = useState("");
+  const [viewConfirmDelete, setViewConfirmDelete] = useState(false);
   const close = () => {
     setModal(null);
   };
   const closeModal = () => {
     setViewConfirmDelete(false);
-  }
+  };
   return (
     <main>
       <Container>
-
-          {modal && <Modalset closed={close} modalObj={modal} />}
-          {viewConfirmDelete && <ModalConfirm closeModal={closeModal} id={id} />}
-        {viewAlert && <div className="alert">Deleted Successfully!!!</div>}
         {modal && <Modalset closed={close} modalObj={modal} />}
+        {viewConfirmDelete && (
+          <ModalConfirm
+            closeModal={closeModal}
+            id={id}
+            deleteOnClick={deleteOnClick}
+          />
+        )}
+        {viewAlert && <div className="alert">Deleted Successfully!!!</div>}
         <SearchBar value={value} search={search} />
         <Table className="mt-5">
           <thead>
@@ -38,19 +44,14 @@ const ReportsUI = ({ reports, value, search, deleteOnClick,viewAlert }) => {
             </tr>
             {filteredReports.map((report, index) => {
               return (
-                 
-                  <tr key={index}>
+                <tr key={index}>
                   <th>{report.companyName}</th>
                   <th>{report.candidateName}</th>
                   <th>{formatDate(report.interviewDate)}</th>
                   <th>
-
-                    {report.status} <div className="fRight">
-                    <button className="styleReportButton" onClick={()=>{setModal(report);}} ><FontAwesomeIcon icon={faEye} /></button>
-                    <button className="styleReportButton" onClick={()=>{setId(report.id); setViewConfirmDelete(true)}}><FontAwesomeIcon icon={faTrashAlt} /></button>
-                    {/* {report.status}
-                   <div className="fRight">
-                     <button
+                    {report.status}{" "}
+                    <div className="fRight">
+                      <button
                         className="styleReportButton"
                         onClick={() => {
                           setModal(report);
@@ -60,10 +61,13 @@ const ReportsUI = ({ reports, value, search, deleteOnClick,viewAlert }) => {
                       </button>
                       <button
                         className="styleReportButton"
-                        onClick={() => {deleteOnClick(report.id)}}
+                        onClick={() => {
+                          setId(report.id);
+                          setViewConfirmDelete(true);
+                        }}
                       >
                         <FontAwesomeIcon icon={faTrashAlt} />
-                      </button> */}
+                      </button>
                     </div>
                   </th>
                 </tr>

@@ -1,10 +1,9 @@
 import React from 'react'
 import './modalConfirm.css'
-import { deleteReport } from '../../../services/deleteReport';
+// import { deleteReport } from '../../../services/deleteReport';
 import "animate.css"
 
-function ModalConfirm({ closeModal, id }) {
-    const token = sessionStorage.getItem('token');
+function ModalConfirm({ closeModal, id, deleteOnClick }) {
         
     return (
         <div className="modalBackground" onClick={closeModal}>
@@ -28,7 +27,7 @@ function ModalConfirm({ closeModal, id }) {
                     id="cancelBtn">Cancel</button>
 
                     <button 
-                    onClick={()=>{deleteReport(token, id)}}
+                    onClick={()=>{deleteOnClick(id)}}
                     id="confirmBtn"
                     >Continue</button>
                 </div>                   
