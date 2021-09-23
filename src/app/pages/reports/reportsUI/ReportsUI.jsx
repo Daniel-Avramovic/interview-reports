@@ -48,22 +48,22 @@ const ReportsUI = ({ reports, value, search, deleteOnClick,viewAlert }) => {
                     {report.status} <div className="fRight">
                     <button className="styleReportButton" onClick={()=>{setModal(report);}} ><FontAwesomeIcon icon={faEye} /></button>
                     <button className="styleReportButton" onClick={()=>{setId(report.id); setViewConfirmDelete(true)}}><FontAwesomeIcon icon={faTrashAlt} /></button>
-//                     {report.status}
-//                     <div className="fRight">
-//                       <button
-//                         className="styleReportButton"
-//                         onClick={() => {
-//                           setModal(report);
-//                         }}
-//                       >
-//                         <FontAwesomeIcon icon={faEye} />
-//                       </button>
-//                       <button
-//                         className="styleReportButton"
-//                         onClick={() => {deleteOnClick(report.id)}}
-//                       >
-//                         <FontAwesomeIcon icon={faTrashAlt} />
-//                       </button>
+                    {/* {report.status}
+                   <div className="fRight">
+                     <button
+                        className="styleReportButton"
+                        onClick={() => {
+                          setModal(report);
+                        }}
+                      >
+                        <FontAwesomeIcon icon={faEye} />
+                      </button>
+                      <button
+                        className="styleReportButton"
+                        onClick={() => {deleteOnClick(report.id)}}
+                      >
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                      </button> */}
                     </div>
                   </th>
                 </tr>
