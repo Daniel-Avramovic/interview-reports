@@ -10,8 +10,16 @@ const Step1 = ({ handleOnChange, value, candidates, nextStep, selected }) => {
   const filteredCandidates = filterUser(candidates, value);
   const img =
     "https://clinicforspecialchildren.org/wp-content/uploads/2016/08/avatar-placeholder.gif";
+    const addClass = (id) =>{
+      let element = document.getElementById(id);
+      let main = document.getElementsByClassName('active'); 
+      Array.from(main).forEach((div)=>{
+        div.firstChild.classList.remove('border');
+      })
+      element.classList.add('border')
+    };
+    
   return (
-    // <h1>page 1 <input onChange={ (e) => handleOnChange('candidate', e.target.value)} value={value} /></h1>
     <main>
       <Container className="mt-3">
         <Row>
@@ -34,10 +42,11 @@ const Step1 = ({ handleOnChange, value, candidates, nextStep, selected }) => {
               />
               {filteredCandidates.map((candidate, index) => {
                 return (
-                  <Col lg={6} key={index}>
+                  <Col lg={6} key={index} className='active'>
                     <div
+                    id={candidate.id}
                       className="d-flex p-2 bgColor mb-3"
-                      onClick={() => handleOnChange("candidate", candidate)}
+                      onClick={() =>{handleOnChange("candidate", candidate); addClass(candidate.id)}}
                     >
                       <img src={img} className="img" alt="No img!!!" />
                       <div>
