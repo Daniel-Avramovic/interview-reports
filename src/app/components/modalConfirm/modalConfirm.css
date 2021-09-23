@@ -1,0 +1,80 @@
+.modalBackground {
+    width: 100vw;
+    height: 100vh;
+    margin-top: -55px;
+    margin-left: -110px;
+    background-color: rgba(200, 200, 200, .4);
+    /* background-color: black; */
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContainer {
+    width: 500px;
+    height: 300px;
+    border: 1px solid black;
+    border-radius: 12px;
+    background-color: white;
+    /* box-shadow: rgba(0, 0, 0, 0.35) 10px 10px 15px; */
+    box-shadow: 1px 2px 41px -7px rgba(0,0,0,0.75);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    animation: bounceIn; /* referring directly to the animation's @keyframe declaration */
+    animation-duration: 1s; /* don't forget to set a duration! */
+  }
+  
+  .modalContainer .title {
+    display: inline-block;
+    text-align: center;
+    margin-top: 3px;
+  }
+  
+  .titleCloseBtn {
+    display: flex;
+    justify-content: flex-end;
+  }
+  
+  .titleCloseBtn button {
+    background-color: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+  }
+  
+  .modalContainer .body {
+    flex: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.7rem;
+    text-align: center;
+  }
+  
+  .modalContainer .footer {
+    flex: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modalContainer .footer button {
+    width: 150px;
+    height: 40px;
+    margin: 15px;
+    border: none;
+    background-color: rgb(25, 102, 102);
+    color: white;
+    border-radius: 8px;
+    font-size: 20px;
+    cursor: pointer;
+  }
+  
+  #cancelBtn:hover,
+  #confirmBtn:hover {
+    background-color: white;
+    color: rgb(25, 102, 102);
+    border: 1px solid rgb(25, 102, 102);
+  }
