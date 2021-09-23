@@ -29,8 +29,7 @@ const Reports = () => {
       setviewAlert(true);
       setReports(res);
       setLoading(false);
-
-      setTimeout(() => {
+        setTimeout(() => {
         setviewAlert(false);
       }, 3000);
     });
