@@ -8,6 +8,7 @@ import ModalConfirm from "../../../components/modalConfirm/ModalConfirm";
 import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./reportsUI.css";
+import NoResults from "../../../components/noUsers/NoUsers";
 
 
 const ReportsUI = ({ reports, value, search, deleteOnClick, viewAlert }) => {
@@ -21,6 +22,14 @@ const ReportsUI = ({ reports, value, search, deleteOnClick, viewAlert }) => {
   const closeModal = () => {
     setViewConfirmDelete(false);
   };
+  if(filteredReports.length === 0) {
+    return(
+      <main>
+        <SearchBar value={value} search={search} />
+        <NoResults />
+      </main>
+    )
+  }
   return (
     <main>
       <Container>

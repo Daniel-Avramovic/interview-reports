@@ -3,6 +3,7 @@ import { Container, Row, Col, Card } from "react-bootstrap";
 import Image from "react-bootstrap/Image";
 import { Link } from "react-router-dom";
 import { filterUser } from "../../../../Data/flteredUsers";
+import NoResults from "../../../components/noUsers/NoUsers";
 import SearchBar from "../../../components/searchBar/SearchBar";
 import "./candidate.css";
 
@@ -14,7 +15,7 @@ const CandidatesUI = ({ candidates, value, search }) => {
     return (
       <main>
         <SearchBar value={value} search={search} />
-        <h1>No results</h1>
+        <NoResults />
       </main>
     );
   }
