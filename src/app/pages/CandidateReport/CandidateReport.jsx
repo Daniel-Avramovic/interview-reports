@@ -14,7 +14,6 @@ const CandidateReport = ({ match }) => {
   const onGetCandidates = () => {
     const get = async () => {
       const candidates = await getCandidates(token);
-      console.log(candidates);
       candidates.forEach((candidate) => {
         if (candidate.id === id) {
           setCandidate(candidate);

@@ -4,31 +4,29 @@ import { formatDate } from "../../../../Data/formatDate";
 import Modalset from "../../../components/modal/Modal";
 import SearchBar from "../../../components/searchBar/SearchBar";
 import "./reportsUI.css";
-import { faEye,  faTrashAlt } from "@fortawesome/free-solid-svg-icons";
+import { faEye, faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-//import { deleteReport } from "../../../../services/deleteReport";
 import { filterReport } from "../../../../Data/filterReports";
 import ModalConfirm from "../../../components/modalConfirm/ModalConfirm";
-
-const ReportsUI = ({ reports, value, search }) => {
+const ReportsUI = ({ reports, value, search, deleteOnClick,viewAlert }) => {
   const filteredReports = filterReport(reports, value);
-  console.log(filteredReports)
-  //const token = sessionStorage.getItem('token');
   const [modal,setModal] = useState(null);
-  const [viewConfirmDelete, setViewConfirmDelete] = useState(false);
-  const [id, setId] = useState("");
+   const [id, setId] = useState("");
+   const [viewConfirmDelete, setViewConfirmDelete] = useState(false);
   const close = () => {
-      setModal(null);
+    setModal(null);
   };
   const closeModal = () => {
     setViewConfirmDelete(false);
   }
   return (
     <main>
-        
       <Container>
+
           {modal && <Modalset closed={close} modalObj={modal} />}
           {viewConfirmDelete && <ModalConfirm closeModal={closeModal} id={id} />}
+        {viewAlert && <div className="alert">Deleted Successfully!!!</div>}
+        {modal && <Modalset closed={close} modalObj={modal} />}
         <SearchBar value={value} search={search} />
         <Table className="mt-5">
           <thead>
@@ -46,9 +44,26 @@ const ReportsUI = ({ reports, value, search }) => {
                   <th>{report.candidateName}</th>
                   <th>{formatDate(report.interviewDate)}</th>
                   <th>
+
                     {report.status} <div className="fRight">
                     <button className="styleReportButton" onClick={()=>{setModal(report);}} ><FontAwesomeIcon icon={faEye} /></button>
                     <button className="styleReportButton" onClick={()=>{setId(report.id); setViewConfirmDelete(true)}}><FontAwesomeIcon icon={faTrashAlt} /></button>
+//                     {report.status}
+//                     <div className="fRight">
+//                       <button
+//                         className="styleReportButton"
+//                         onClick={() => {
+//                           setModal(report);
+//                         }}
+//                       >
+//                         <FontAwesomeIcon icon={faEye} />
+//                       </button>
+//                       <button
+//                         className="styleReportButton"
+//                         onClick={() => {deleteOnClick(report.id)}}
+//                       >
+//                         <FontAwesomeIcon icon={faTrashAlt} />
+//                       </button>
                     </div>
                   </th>
                 </tr>

@@ -9,4 +9,4 @@ export const filterReport = (reports, val) => {
        return false;
      }
    })
- }
+ };

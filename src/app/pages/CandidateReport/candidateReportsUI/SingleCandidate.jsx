@@ -10,14 +10,14 @@ import "./singleCandidate.css";
 const SingleCandidate = ({ candidate, reports }) => {
   const [isView, setIsView] = useState(false);
   const [modalObj, setModalObj] = useState({});
-  const closedModal =()=>{
-    setIsView(false)
-  }
+  const closedModal = () => {
+    setIsView(false);
+  };
   const img =
     "https://w7.pngwing.com/pngs/340/956/png-transparent-profile-user-icon-computer-icons-user-profile-head-ico-miscellaneous-black-desktop-wallpaper.png";
   return (
     <main>
-        {isView && <Modalset modalObj={modalObj} closed={closedModal}/>}
+      {isView && <Modalset modalObj={modalObj} closed={closedModal} />}
       <Container>
         <Row>
           <Col xs={12} md={12} lg={4}>
@@ -45,14 +45,25 @@ const SingleCandidate = ({ candidate, reports }) => {
               <th>Status</th>
             </tr>
             {reports.map((report, index) => {
-                return(
-                    <tr key={index}>
-                        <th>{index+1}</th>
-                        <th>{report.companyName}</th>
-                        <th>{formatDate(report.interviewDate)}</th>
-                        <th>{report.status} <button className="styleButton" onClick={()=> {setModalObj(report); setIsView(true)}}><FontAwesomeIcon icon={faEye}/></button></th>
-                    </tr>
-                )
+              return (
+                <tr key={index}>
+                  <th>{index + 1}</th>
+                  <th>{report.companyName}</th>
+                  <th>{formatDate(report.interviewDate)}</th>
+                  <th>
+                    {report.status}{" "}
+                    <button
+                      className="styleButton"
+                      onClick={() => {
+                        setModalObj(report);
+                        setIsView(true);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faEye} />
+                    </button>
+                  </th>
+                </tr>
+              );
             })}
           </thead>
         </Table>
