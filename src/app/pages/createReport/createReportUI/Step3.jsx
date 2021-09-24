@@ -3,7 +3,15 @@ import { Col, Container, Row, Button } from "react-bootstrap";
 // import { useHistory } from "react-router-dom";
 import "./steps.css";
 
-const Step3 = ({ handleOnChange, backStep, postDate, error, viewAlert }) => {
+const Step3 = ({
+  handleOnChange,
+  backStep,
+  postDate,
+  error,
+  viewAlert,
+  candidate,
+  company,
+}) => {
   // const history = useHistory();
   return (
     <main>
@@ -20,11 +28,19 @@ const Step3 = ({ handleOnChange, backStep, postDate, error, viewAlert }) => {
             <div className="mb-4 currentStep">
               <span>3</span>Fill Report Detail
             </div>
+            <div className="mt-5">
+              <div>Candidate:</div>
+              <div className="name">{candidate}</div>
+            </div>
+            <div>
+              <div>Company:</div>
+              <div className="name">{company}</div>
+            </div>
           </Col>
           <Col lg={9}>
             <Row>
               <Col>
-                <label for="date">Date</label>
+                <label htmlFor="date">Date</label>
                 <input
                   id="date"
                   name="date"
@@ -35,7 +51,7 @@ const Step3 = ({ handleOnChange, backStep, postDate, error, viewAlert }) => {
                 />
               </Col>
               <Col>
-                <label for="phase">Phase</label>
+                <label htmlFor="phase">Phase</label>
                 <select
                   id="phase"
                   name="phase"
@@ -49,7 +65,7 @@ const Step3 = ({ handleOnChange, backStep, postDate, error, viewAlert }) => {
                 </select>
               </Col>
               <Col>
-                <label for="status">Status</label>
+                <label htmlFor="status">Status</label>
                 <select
                   name="status"
                   id="status"
@@ -84,7 +100,9 @@ const Step3 = ({ handleOnChange, backStep, postDate, error, viewAlert }) => {
             <Button
               variant="outline-info"
               className="buttonNext"
-              onClick={() => {postDate()}} // history.push('/')
+              onClick={() => {
+                postDate();
+              }} // history.push('/')
             >
               Finish
             </Button>
