@@ -124,6 +124,7 @@ const CreateReport = () => {
             nextStep={nextStep}
             backStep={backStep}
             selected={data.company}
+            candidate={data.candidate.name}
           />
         ))}
       {page === 3 &&
@@ -137,6 +138,8 @@ const CreateReport = () => {
             postDate={postDate}
             error={error}
             viewAlert={viewAlert}
+            candidate={data.candidate.name}
+            company={data.company.name}
           />
         ))}
     </Fragment>

@@ -4,10 +4,25 @@ import { filterCompany } from "../../../../Data/filterCompany";
 import SearchBar from "../../../components/searchBar/SearchBar";
 import "./steps.css";
 
-const Step2 = ({ handleOnChange, nextStep, backStep, companies, value, selected }) => {
+const Step2 = ({
+  handleOnChange,
+  nextStep,
+  backStep,
+  companies,
+  value,
+  selected,
+  candidate
+}) => {
   const filteredCompany = filterCompany(companies, value);
+  const active = document.getElementsByClassName("listCompany");
+  const addClass = (id) => {
+    const companyId = document.getElementById(id);
+    Array.from(active).forEach(element => {
+      element.classList.remove("border");
+    })
+    companyId.classList.add("border");
+  };
   return (
-    // <h1> <input onChange={ (e) => handleOnChange('company', e.target.value)} value={value} /></h1>
     <main>
       <Container className="mt-3">
         <Row>
@@ -21,6 +36,10 @@ const Step2 = ({ handleOnChange, nextStep, backStep, companies, value, selected 
             <div className="mb-4">
               <span>3</span>Fill Report Detail
             </div>
+            <div className='mt-5'>
+              <div>Candidate:</div>
+            <div className='name'>{candidate}</div>
+            </div>
           </Col>
           <Col lg={9}>
             <SearchBar
@@ -30,9 +49,13 @@ const Step2 = ({ handleOnChange, nextStep, backStep, companies, value, selected 
             {filteredCompany.map((company, index) => {
               return (
                 <div
+                  id={company.id}
                   key={index}
                   className="listCompany"
-                  onClick={() => handleOnChange("company", company)}
+                  onClick={() => {
+                    handleOnChange("company", company);
+                    addClass(company.id);
+                  }}
                 >
                   {company.name}
                 </div>
