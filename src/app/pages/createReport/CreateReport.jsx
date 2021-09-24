@@ -77,10 +77,7 @@ const CreateReport = () => {
         }
         res.json();
       })
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => console.log(err));
+      .then(data).catch((err) => console.log(err));
     }
     catch(e){
       console.log(e);
