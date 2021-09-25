@@ -47,7 +47,7 @@ const CreateReport = () => {
     get();
   };
   const postDate = () => {
-    
+    setError("");
     const postData = new Report(
       id,
       data.candidate.id,
